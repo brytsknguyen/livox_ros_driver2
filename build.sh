@@ -27,13 +27,13 @@ echo "ROS version is: "$ROS_VERSION
 
 # clear `build/` folder.
 # TODO: Do not clear these folders, if the last build is based on the same ROS version.
-rm -rf ../../build/
-rm -rf ../../devel/
-rm -rf ../../install/
-# clear src/CMakeLists.txt if it exists.
-if [ -f ../CMakeLists.txt ]; then
-    rm -f ../CMakeLists.txt
-fi
+# rm -rf ../../build/
+# rm -rf ../../devel/
+# rm -rf ../../install/
+# # clear src/CMakeLists.txt if it exists.
+# if [ -f ../CMakeLists.txt ]; then
+#     rm -f ../CMakeLists.txt
+# fi
 
 # exit
 
@@ -55,7 +55,7 @@ fi
 pushd `pwd` > /dev/null
 if [ $ROS_VERSION = ${VERSION_ROS1} ]; then
     cd ../../
-    catkin_make -DROS_EDITION=${VERSION_ROS1}
+    catkin build -DROS_EDITION=${VERSION_ROS1}
 elif [ $ROS_VERSION = ${VERSION_ROS2} ]; then
     cd ../../
     colcon build --cmake-args -DROS_EDITION=${VERSION_ROS2} -DHUMBLE_ROS=${ROS_HUMBLE}
